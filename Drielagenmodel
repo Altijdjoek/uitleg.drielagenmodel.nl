@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drie Lagen Model Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f8f8f8;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    #layers {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 30px;
+    }
+
+    .layer {
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1;
+      margin: 0 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .layer:hover {
+      background-color: #e0e0e0;
+    }
+
+    #output {
+      margin-top: 30px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    #quiz {
+      margin-top: 40px;
+      background-color: #f0f0f0;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #quiz h2 {
+      color: #333;
+      border-bottom: 2px solid #2ecc71;
+      padding-bottom: 10px;
+    }
+
+    input {
+      padding: 12px;
+      margin-right: 12px;
+      width: 60%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 12px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #answerFeedback {
+      margin-top: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Drie Lagen Model</h1>
+    <p>Uitleg over het toepassingslaag, fysieke laag en logische laag. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non diam nisl. Curabitur eu velit eget quam commodo mattis et vel ex. Vestibulum eu arcu sit amet quam rhoncus venenatis a a metus. Praesent sit amet urna vel lacus volutpat cursus eget at odio. Integer id tristique odio.</p>
+
+    <div id="layers">
+      <div class="layer" style="background-color: #3498db;">
+        <h2>Toepassingslaag</h2>
+        <p>De laag waar gebruikers direct mee interacteren.</p>
+      </div>
+      <div class="layer" style="background-color: #e74c3c;">
+        <h2>Fysieke Laag</h2>
+        <p>De hardwarecomponenten van het systeem.</p>
+      </div>
+      <div class="layer" style="background-color: #2ecc71;">
+        <h2>Logische Laag</h2>
+        <p>De algoritmen en processen die plaatsvinden.</p>
+      </div>
+    </div>
+
+    <div id="output"></div>
+
+    <div id="quiz">
+      <h2>Quizvraag</h2>
+      <p>Welke laag is verantwoordelijk voor de interactie met gebruikers?</p>
+      <input type="text" id="answerInput">
+      <button onclick="checkAnswer()">Controleer antwoord</button>
+      <p id="answerFeedback"></p>
+    </div>
+
+    <script>
+      const layers = document.getElementById('layers');
+      const output = document.getElementById('output');
+      const answerInput = document.getElementById('answerInput');
+      const answerFeedback = document.getElementById('answerFeedback');
+
+      layers.addEventListener('click', (event) => {
+        if (event.target.classList.contains('layer')) {
+          output.textContent = `Geselecteerde laag: ${event.target.querySelector('h2').textContent}`;
+          layers.querySelectorAll('.layer').forEach(layer => {
+            layer.style.backgroundColor = ''; // Reset background color for all layers
+          });
+          event.target.style.backgroundColor = '#f0f0f0'; // Change background color for the selected layer
+        }
+      });
+
+      function checkAnswer() {
+        const userAnswer = answerInput.value.toLowerCase();
+        const correctAnswer = 'toepassingslaag';
+
+        if (userAnswer === correctAnswer) {
+          answerFeedback.textContent = 'Goed antwoord! De toepassingslaag is inderdaad verantwoordelijk voor gebruikersinteractie.';
+        } else {
+          answerFeedback.textContent = 'Fout antwoord. Probeer opnieuw!';
+        }
+      }
+    </script>
+  </div>
+</body>
+</html>
